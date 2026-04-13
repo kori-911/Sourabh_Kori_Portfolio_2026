@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useLocation, Outlet } from "react-router-dom";
 import { motion } from "framer-motion";
 import TopNav from "./TopNav";
+import Footer from "./Footer";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -28,6 +29,7 @@ export default function Layout() {
           <Outlet />
         </motion.div>
       </main>
+      <Footer />
     </div>
   );
 }
