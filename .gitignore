@@ -1,6 +1,7 @@
 node_modules/
 build/
 dist/
+# docs/ is our GitHub Pages build output — intentionally committed
 coverage/
 .DS_Store
 *.log

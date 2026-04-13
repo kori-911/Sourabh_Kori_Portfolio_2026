@@ -9,6 +9,9 @@ export default defineConfig(({mode}) => {
     // "./" makes all asset paths relative, so the build works whether served
     // from a domain root (Netlify) or a subpath (GitHub Pages /repo-name/).
     base: "./",
+    build: {
+      outDir: "docs",
+    },
     plugins: [react(), tailwindcss()],
     define: {
       'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY),
