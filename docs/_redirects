@@ -1,4 +1,0 @@
-# Netlify SPA fallback — all routes serve index.html
-# HashRouter doesn't strictly need this, but it's a safety net
-# if you ever switch back to BrowserRouter.
-/*    /index.html   200
