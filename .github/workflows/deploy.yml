@@ -33,6 +33,14 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Add CNAME and nojekyll
+        run: |
+          echo "kori911.in" > dist/CNAME
+          touch dist/.nojekyll
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
