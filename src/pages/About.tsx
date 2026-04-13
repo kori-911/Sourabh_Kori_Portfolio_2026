@@ -32,13 +32,19 @@ const About = () => {
           <h1 className="font-display text-4xl md:text-6xl text-foreground mb-8"><ScrambleText text="ABOUT" /></h1>
           <div className="h-px w-16 bg-primary mb-12" />
           <p className="font-mono text-sm text-foreground leading-relaxed mb-6 opacity-80">
-            I came to UX from mechanical engineering — trained at NIFT New Delhi, started designing for healthcare and commerce, and spent the last four years deep in enterprise supply chain software at o9 Solutions.
+            I used to calculate stress tolerances on mechanical parts. Now I calculate stress tolerances on humans trying to use bad software. Turns out: not that different.
           </p>
           <p className="font-mono text-sm text-foreground leading-relaxed mb-6 opacity-80">
-            The problems I find interesting are the ones nobody wants to draw: fragmented multi-step workflows, data-dense dashboards with twelve stakeholder opinions, systems that have to work for a first-time user and a power user simultaneously.
+            Five years untangling enterprise supply chain UX at o9 Solutions — chaotic, complex, and genuinely my kind of problem. I live in the messy middle: workflows nobody wants to map, dashboards that have to speak to a CFO and a warehouse manager in the same breath, interfaces where a first-timer and a power user share the same front door.
+          </p>
+          <p className="font-mono text-sm text-foreground leading-relaxed mb-6 opacity-80">
+            Anyone can learn design. Empathy is harder — and that gap is exactly what separates designers who make things pretty from designers who make things actually work.
+          </p>
+          <p className="font-mono text-sm text-foreground leading-relaxed mb-6 opacity-80">
+            Off the clock: scale models, Hot Wheels, and photographing whatever earns a second look. Precision, patience, and a deep appreciation for things most people walk right past. It's a personality type. I've made peace with it.
           </p>
           <p className="font-mono text-sm text-foreground leading-relaxed opacity-80">
-            Outside work: photography and scale model building — both are about patience, precision, and caring about things that are almost too small to matter.
+            Why switch? Two reasons, in strict order — feeding the dogs on my street, and restoring my family's Santro to its former glory. A man needs goals.
           </p>
         </motion.section>
 
