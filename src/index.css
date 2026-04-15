@@ -74,6 +74,7 @@
   transform: scaleX(0);
   transform-origin: left center;
   transition: transform var(--motion-duration-fast) var(--motion-easing-standard);
+  pointer-events: none;
 }
 .hover-underline:hover::after,
 .hover-underline:focus-visible::after {
@@ -100,6 +101,7 @@
   transform: scaleX(0);
   transform-origin: left center;
   transition: transform var(--motion-duration-fast) var(--motion-easing-standard);
+  pointer-events: none;
 }
 .hover-item:hover .hover-text,
 .hover-item:focus-within .hover-text {
