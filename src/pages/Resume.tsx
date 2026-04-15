@@ -18,9 +18,9 @@ const experience = [
       "Contributed to the evolution of the internal Design System with reusable enterprise components and standardized interaction patterns."
     ],
     recognition: [
-      { text: "Q4 2025 Business Milestone Award – SRM platform release (S2C, D2S, P2P, Supplier Onboarding)", cert: "/assets/cert-q4-2025.pdf" },
-      { text: "Q4 2024 Business Milestone Award – UI scalability enhancements including \"Always on Pane\" (Samsung)", cert: "/assets/cert-q4-2024.pdf" },
-      { text: "Performer of the Quarter (Q4 2023)", cert: "/assets/cert-q4-2023.pdf" },
+      { text: "Q4 2025 Business Milestone Award – SRM platform release (S2C, D2S, P2P, Supplier Onboarding)", cert: "./assets/cert-q4-2025.pdf" },
+      { text: "Q4 2024 Business Milestone Award – UI scalability enhancements including \"Always on Pane\" (Samsung)", cert: "./assets/cert-q4-2024.pdf" },
+      { text: "Performer of the Quarter (Q4 2023)", cert: "./assets/cert-q4-2023.png" },
     ]
   },
   {

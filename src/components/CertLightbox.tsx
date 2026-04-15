@@ -34,22 +34,12 @@ export default function CertLightbox({ cert, onClose }: CertLightboxProps) {
                 Close ✕
               </button>
             </div>
-            <div className="w-full h-[70vh]">
-              <iframe
-                src={`https://docs.google.com/viewer?url=${encodeURIComponent(window.location.origin + cert)}&embedded=true`}
-                className="w-full h-full"
-                title="Certificate"
+            <div className="w-full max-h-[75vh] overflow-y-auto">
+              <img
+                src={cert}
+                alt="Certificate"
+                className="w-full"
               />
-            </div>
-            <div className="px-6 py-3 border-t border-border flex justify-end">
-              <a
-                href={cert}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-mono text-xs uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors"
-              >
-                Open PDF ↗
-              </a>
             </div>
           </motion.div>
         </motion.div>
