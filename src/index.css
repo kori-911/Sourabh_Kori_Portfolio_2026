@@ -10,6 +10,14 @@
   --color-muted: hsl(0, 0%, 12%);
   --color-muted-foreground: hsl(0, 0%, 40%);
   --color-border: hsl(0, 0%, 20%);
+
+  /* Interaction tokens */
+  --color-text-hover: var(--color-foreground);
+  --color-accent-underline: var(--color-primary);
+  --motion-duration-fast: 140ms;
+  --motion-easing-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --underline-thickness: 1px;
+  --underline-offset: 3px;
   
   --font-sans: 'Space Grotesk', sans-serif;
   --font-mono: 'IBM Plex Mono', monospace;
@@ -45,6 +53,61 @@
   h1, h2, h3, h4, h5, h6 {
     @apply font-display uppercase tracking-tight;
   }
+}
+
+/*
+  .hover-underline — element IS the hover trigger (anchors, buttons)
+  Animates ::after left→right via scaleX. No layout shift. :focus-visible mirrors hover.
+*/
+.hover-underline {
+  position: relative;
+  text-decoration: none;
+}
+.hover-underline::after {
+  content: '';
+  position: absolute;
+  bottom: calc(-1 * var(--underline-offset));
+  left: 0;
+  width: 100%;
+  height: var(--underline-thickness);
+  background: var(--color-accent-underline);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--motion-duration-fast) var(--motion-easing-standard);
+}
+.hover-underline:hover::after,
+.hover-underline:focus-visible::after {
+  transform: scaleX(1);
+}
+
+/*
+  .hover-item / .hover-text pair — parent is the hit target, child gets the underline.
+  Use when the clickable region (li, div) is wider than the text.
+  :focus-within covers keyboard navigation within the item.
+*/
+.hover-item .hover-text {
+  position: relative;
+  transition: color var(--motion-duration-fast) var(--motion-easing-standard);
+}
+.hover-item .hover-text::after {
+  content: '';
+  position: absolute;
+  bottom: calc(-1 * var(--underline-offset));
+  left: 0;
+  width: 100%;
+  height: var(--underline-thickness);
+  background: var(--color-accent-underline);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--motion-duration-fast) var(--motion-easing-standard);
+}
+.hover-item:hover .hover-text,
+.hover-item:focus-within .hover-text {
+  color: var(--color-text-hover);
+}
+.hover-item:hover .hover-text::after,
+.hover-item:focus-within .hover-text::after {
+  transform: scaleX(1);
 }
 
 /* Hide scrollbar */

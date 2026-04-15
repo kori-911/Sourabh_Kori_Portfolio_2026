@@ -61,10 +61,9 @@ export default function Footer() {
                 <li key={link.to}>
                   <Link
                     to={link.to}
-                    className="font-mono text-xs text-muted-foreground hover:text-foreground transition-colors duration-200 relative group inline-block"
+                    className="hover-underline font-mono text-xs text-muted-foreground hover:text-foreground transition-colors inline-block"
                   >
                     {link.label}
-                    <span className="absolute -bottom-px left-0 w-0 h-px bg-primary transition-all duration-300 group-hover:w-full" />
                   </Link>
                 </li>
               ))}
@@ -83,10 +82,9 @@ export default function Footer() {
                     href={link.href}
                     target={link.href.startsWith("mailto") ? undefined : "_blank"}
                     rel="noopener noreferrer"
-                    className="font-mono text-xs text-muted-foreground hover:text-foreground transition-colors duration-200 relative group inline-block"
+                    className="hover-underline font-mono text-xs text-muted-foreground hover:text-foreground transition-colors inline-block"
                   >
                     {link.label}
-                    <span className="absolute -bottom-px left-0 w-0 h-px bg-primary transition-all duration-300 group-hover:w-full" />
                   </a>
                 </li>
               ))}

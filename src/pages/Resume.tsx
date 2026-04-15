@@ -85,9 +85,9 @@ export default function Resume() {
             </h2>
             <div className="flex flex-col gap-12">
               {experience.map((job, index) => (
-                <div key={index} className="group">
+                <div key={index} className="group/job">
                   <div className="flex flex-col md:flex-row md:items-baseline justify-between mb-2 gap-2">
-                    <h3 className="font-display text-2xl text-foreground group-hover:text-primary transition-colors">
+                    <h3 className="font-display text-2xl text-foreground group-hover/job:text-primary transition-colors">
                       {job.role}
                     </h3>
                     <span className="font-mono text-xs text-muted-foreground whitespace-nowrap">
@@ -115,11 +115,13 @@ export default function Resume() {
                         {job.recognition.map((rec, i) => (
                           <li
                             key={i}
-                            className="flex gap-3 cursor-pointer group"
+                            className="flex gap-3 cursor-pointer hover-item"
                             onClick={() => setLightboxCert(rec.cert)}
+                            tabIndex={0}
+                            onKeyDown={(e) => e.key === "Enter" && setLightboxCert(rec.cert)}
                           >
                             <span className="text-primary shrink-0">→</span>
-                            <span className="decoration-muted-foreground group-hover:underline group-hover:underline-offset-4 group-hover:decoration-foreground group-hover:text-foreground transition-colors">
+                            <span className="hover-text text-muted-foreground">
                               {rec.text}
                             </span>
                           </li>
