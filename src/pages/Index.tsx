@@ -121,9 +121,9 @@ const Index = () => {
     { value: "5 YRS", label: "Enterprise SaaS" },
     { value: "Fortune 100", label: "Client Scale" },
     { value: "NIFT", label: "Masters in Design" },
-    { value: "Business Milestone", label: "Q4 2025 — SRM Platform", award: true, cert: "/assets/cert-q4-2025.pdf" },
-    { value: "Business Milestone", label: "Q4 2024 — Always on Pane", award: true, cert: "/assets/cert-q4-2024.pdf" },
-    { value: "Performer of the Quarter", label: "Q4 2023", award: true, cert: "/assets/cert-q4-2023.pdf" },
+    { value: "Business Milestone", label: "Q4 2025 — SRM Platform", award: true, cert: "./assets/cert-q4-2025.pdf" },
+    { value: "Business Milestone", label: "Q4 2024 — Always on Pane", award: true, cert: "./assets/cert-q4-2024.pdf" },
+    { value: "Performer of the Quarter", label: "Q4 2023", award: true, cert: "./assets/cert-q4-2023.png" },
   ];
 
   const [statsHovered, setStatsHovered] = useState(false);
