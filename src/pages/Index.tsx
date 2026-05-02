@@ -320,31 +320,6 @@ const Index = () => {
         </Link>
       </motion.section>
 
-      {/* Contact CTA */}
-      <section className="px-8 md:px-16 py-24 border-t border-border">
-        <motion.div
-          className="max-w-xl"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          <span className="font-mono text-xs font-medium text-primary uppercase tracking-wider block mb-8">
-            LET'S CONNECT
-          </span>
-          <h2 className="font-display text-3xl md:text-4xl text-foreground mb-6">
-            INTERESTED IN WORKING TOGETHER?
-          </h2>
-          <p className="font-mono text-sm text-muted-foreground leading-relaxed mb-8">
-            I'm always open to discussing new projects, design challenges, or opportunities
-            to collaborate. Drop me a line.
-          </p>
-          <ContactDrawer 
-            buttonClassName="border border-primary bg-primary text-primary-foreground px-8 py-4 font-mono text-xs font-medium uppercase tracking-wider hover:bg-primary/90 transition-colors inline-block cursor-pointer" 
-          />
-        </motion.div>
-      </section>
-
       <CertLightbox cert={lightboxCert} onClose={() => setLightboxCert(null)} />
     </PageWrapper>
   );
