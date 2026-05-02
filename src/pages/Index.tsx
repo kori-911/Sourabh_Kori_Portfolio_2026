@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { projects } from "@/data/projects";
 
-import ContactDrawer from "@/components/ContactDrawer";
 import ProjectCard from "@/components/ProjectCard";
 import ScrambleText from "@/components/ScrambleText";
 import PageWrapper from "@/components/PageWrapper";
@@ -185,7 +184,6 @@ const Index = () => {
               <Link to="/about" className="border border-border px-8 py-4 font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground hover:text-foreground hover:border-foreground transition-colors">
                 About Me
               </Link>
-              <ContactDrawer buttonText="Contact" buttonClassName="border border-border px-8 py-4 font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground hover:text-foreground hover:border-foreground transition-colors cursor-pointer" />
             </div>
           </motion.div>
 

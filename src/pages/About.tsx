@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import ContactDrawer from "@/components/ContactDrawer";
 import ScrambleText from "@/components/ScrambleText";
 import PageWrapper from "@/components/PageWrapper";
 
@@ -88,17 +87,12 @@ const About = () => {
 
         {/* Resume + Contact */}
         <motion.section className="border-t border-border pt-12" {...fadeIn}>
-          <div className="flex flex-col sm:flex-row gap-4">
-            <Link
-              to="/resume"
-              className="border border-border px-8 py-4 font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground hover:text-foreground hover:border-foreground transition-colors text-center"
-            >
-              View Full Resume →
-            </Link>
-            <ContactDrawer 
-              buttonClassName="border border-primary bg-primary text-primary-foreground px-8 py-4 font-mono text-xs font-medium uppercase tracking-wider hover:bg-primary/90 transition-colors text-center cursor-pointer w-full sm:w-auto" 
-            />
-          </div>
+          <Link
+            to="/resume"
+            className="border border-border px-8 py-4 font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground hover:text-foreground hover:border-foreground transition-colors inline-block"
+          >
+            View Full Resume →
+          </Link>
         </motion.section>
       </div>
     </PageWrapper>

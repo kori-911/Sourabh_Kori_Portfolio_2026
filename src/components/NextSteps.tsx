@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { Project } from "@/data/projects";
-import ContactDrawer from "@/components/ContactDrawer";
 
 interface NextStepsProps {
   prev: Project | null;
@@ -60,17 +59,13 @@ const NextSteps = ({ prev, next }: NextStepsProps) => {
         )}
       </div>
 
-      <div className="flex flex-col sm:flex-row justify-center gap-4">
+      <div className="flex justify-center">
         <Link
           to="/work"
           className="border border-border px-8 py-4 font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground hover:text-foreground hover:border-foreground transition-colors text-center"
         >
           Explore All Work
         </Link>
-        <ContactDrawer 
-          buttonText="Get in Touch"
-          buttonClassName="border border-primary bg-primary text-primary-foreground px-8 py-4 font-mono text-xs font-medium uppercase tracking-wider hover:bg-primary/90 transition-colors text-center cursor-pointer"
-        />
       </div>
     </div>
   );

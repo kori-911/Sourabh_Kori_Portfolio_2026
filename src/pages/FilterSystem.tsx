@@ -5,7 +5,6 @@ import PageWrapper from "@/components/PageWrapper";
 import ReadingProgress from "@/components/ReadingProgress";
 import NextSteps from "@/components/NextSteps";
 import { getAdjacentProjects } from "@/data/projects";
-import ContactDrawer from "@/components/ContactDrawer";
 
 const adjacent = getAdjacentProjects("filter-system");
 
@@ -659,23 +658,6 @@ export default function FilterSystem() {
             ))}
           </div>
         </Section>
-
-        {/* ── Connect CTA ───────────────────────────────────────────────── */}
-        <motion.div className="border-t border-border pt-20 mb-20" {...fadeUp}>
-          <p className="font-mono text-[10px] text-primary uppercase tracking-[0.2em] mb-6">
-            Full case study
-          </p>
-          <p className="font-display text-3xl md:text-4xl text-foreground leading-tight mb-3 max-w-xl">
-            Curious to see how it all came together?
-          </p>
-          <p className="font-display text-3xl md:text-4xl text-primary leading-tight mb-10 max-w-xl">
-            Let's connect.
-          </p>
-          <ContactDrawer
-            buttonText="Get in touch →"
-            buttonClassName="font-mono text-xs text-primary border border-primary px-8 py-4 uppercase tracking-widest hover:bg-primary hover:text-primary-foreground transition-colors cursor-pointer inline-block"
-          />
-        </motion.div>
 
         {/* ── Next / Prev ───────────────────────────────────────────────── */}
         <NextSteps prev={adjacent.prev} next={adjacent.next} />
