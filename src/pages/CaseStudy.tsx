@@ -142,7 +142,7 @@ const CaseStudy = () => {
         </Section>
 
         {/* Next Steps */}
-        <NextSteps prev={adjacent.prev} next={adjacent.next} />
+        <NextSteps currentSlug={slug ?? ""} />
       </div>
     </PageWrapper>
   );

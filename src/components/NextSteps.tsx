@@ -1,72 +1,49 @@
 import { Link } from "react-router-dom";
-import { Project } from "@/data/projects";
+import { projects } from "@/data/projects";
+import RulerCarousel, { ComingSoonItem, CarouselItem } from "./RulerCarousel";
 
 interface NextStepsProps {
-  prev: Project | null;
-  next: Project | null;
+  currentSlug: string;
 }
 
-const NextSteps = ({ prev, next }: NextStepsProps) => {
+const NextSteps = ({ currentSlug }: NextStepsProps) => {
+  // All published (non-placeholder) projects except the one we're currently viewing
+  const otherProjects = projects.filter(
+    (p) => !p.placeholder && p.slug !== currentSlug
+  );
+
+  // Build carousel items: real projects first, then coming-soon pads
+  // Minimum 2 slots so the carousel always has something to show
+  const MIN_SLOTS = 2;
+  const comingSoonPads: ComingSoonItem[] = Array.from(
+    { length: Math.max(0, MIN_SLOTS - otherProjects.length) },
+    (_, i) => ({ id: `cs-pad-${i}`, type: "coming-soon" as const })
+  );
+
+  const carouselItems: CarouselItem[] = [...otherProjects, ...comingSoonPads];
+
   return (
     <div className="mt-32 border-t border-border pt-16">
-      <span className="font-mono text-xs font-medium text-primary uppercase tracking-wider block mb-12 text-center">
-        CONTINUE EXPLORING
-      </span>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-        {/* Previous Project */}
-        {prev ? (
-          <Link
-            to={`/work/${prev.slug}`}
-            className="group block border border-border p-8 hover:border-foreground transition-colors"
-          >
-            <span className="font-mono text-xs font-medium text-muted-foreground uppercase tracking-wider block mb-4">
-              ← Previous Project
-            </span>
-            <h3 className="font-display text-2xl text-foreground group-hover:text-primary transition-colors mb-2">
-              {prev.title}
-            </h3>
-            <p className="font-mono text-xs text-muted-foreground">{prev.summary}</p>
-          </Link>
-        ) : (
-          <div className="border border-border p-8 opacity-50 flex flex-col justify-center">
-            <span className="font-mono text-xs font-medium text-muted-foreground uppercase tracking-wider block">
-              Start of Archive
-            </span>
-          </div>
-        )}
-
-        {/* Next Project */}
-        {next ? (
-          <Link
-            to={`/work/${next.slug}`}
-            className="group block border border-border p-8 hover:border-foreground transition-colors text-right"
-          >
-            <span className="font-mono text-xs font-medium text-muted-foreground uppercase tracking-wider block mb-4">
-              Next Project →
-            </span>
-            <h3 className="font-display text-2xl text-foreground group-hover:text-primary transition-colors mb-2">
-              {next.title}
-            </h3>
-            <p className="font-mono text-xs text-muted-foreground">{next.summary}</p>
-          </Link>
-        ) : (
-          <div className="border border-border p-8 opacity-50 flex flex-col justify-center text-right">
-            <span className="font-mono text-xs font-medium text-muted-foreground uppercase tracking-wider block">
-              End of Archive
-            </span>
-          </div>
-        )}
-      </div>
-
-      <div className="flex justify-center">
+      <div className="flex items-end justify-between mb-12">
+        <div>
+          <span className="font-mono text-[10px] text-primary uppercase tracking-[0.2em] block mb-3">
+            CONTINUE EXPLORING
+          </span>
+          <p className="font-mono text-xs text-muted-foreground/60">
+            {otherProjects.length > 0
+              ? `${otherProjects.length} more case ${otherProjects.length === 1 ? "study" : "studies"}`
+              : "More case studies coming soon"}
+          </p>
+        </div>
         <Link
           to="/work"
-          className="border border-border px-8 py-4 font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground hover:text-foreground hover:border-foreground transition-colors text-center"
+          className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground hover:text-primary transition-colors"
         >
-          Explore All Work
+          All Work →
         </Link>
       </div>
+
+      <RulerCarousel items={carouselItems} />
     </div>
   );
 };

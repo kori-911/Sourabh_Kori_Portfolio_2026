@@ -225,14 +225,14 @@ export default function CaseStudyRenderer({ slug }: Props) {
           {afterDark.map((section) => (
             <Section key={section.id} section={section} />
           ))}
-          <NextSteps prev={adjacent.prev} next={adjacent.next} />
+          <NextSteps currentSlug={slug} />
         </div>
       )}
 
       {/* NextSteps when dark section is last (no afterDark) or no dark section at all */}
       {afterDark.length === 0 && (
         <div className={`${CONTAINER} pb-28 pt-16`}>
-          <NextSteps prev={adjacent.prev} next={adjacent.next} />
+          <NextSteps currentSlug={slug} />
         </div>
       )}
     </PageWrapper>

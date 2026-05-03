@@ -3,9 +3,6 @@ import { motion } from "framer-motion";
 import PageWrapper from "@/components/PageWrapper";
 import ReadingProgress from "@/components/ReadingProgress";
 import NextSteps from "@/components/NextSteps";
-import { getAdjacentProjects } from "@/data/projects";
-
-const adjacent = getAdjacentProjects("triage-room");
 
 const fadeUp = {
   initial: { opacity: 0, y: 24 },
@@ -273,7 +270,7 @@ export default function TriageRoom() {
         </Section>
 
         {/* ── Next / Prev ───────────────────────────────────────────────── */}
-        <NextSteps prev={adjacent.prev} next={adjacent.next} />
+        <NextSteps currentSlug="triage-room" />
       </div>
     </PageWrapper>
   );
