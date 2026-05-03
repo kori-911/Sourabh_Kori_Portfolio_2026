@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="eyebrow"       content="Product Design · o9 Solutions" />
+  <meta name="title"         content="Always On Pane &amp; the &lt;em style=&quot;text-transform:none&quot; class=&quot;text-primary font-display&quot;&gt;filter system&lt;/em&gt; beneath it" />
+  <meta name="subtitle"      content="Filters look simple. Select some members, hit apply, the grid updates. For most users, that is the whole story. The challenge is designing for the full story — including the parts most users never see." />
+  <meta name="meta:Role"     content="Sole Product Designer" />
+  <meta name="meta:Surfaces" content="Right Pane · Expanded Mode · Vertical Filter" />
+  <meta name="meta:Platform" content="o9 Digital Brain — Enterprise SaaS" />
+  <meta name="meta:Origin"   content="Global enterprise — electronics &amp; supply chain" />
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     01 — Signal (Context)
+════════════════════════════════════════════════════════════════ -->
+<section id="signal" data-label="01 — Signal">
+  <h2>Before you design a filter, you have to understand what it's actually filtering.</h2>
+  <div data-component="stats">
+    <dl>
+      <dt>3</dt><dd>Filter surfaces designed — right pane, expanded mode, vertical filter</dd>
+      <dt>5</dt><dd>Phases of capability accumulation, each folded into the last</dd>
+      <dt>15+</dt><dd>Item attributes per dimension — with dynamic aliases by product category</dd>
+      <dt>8×2</dt><dd>Configuration matrix — every feature verified across both surfaces</dd>
+    </dl>
+  </div>
+  <p>o9's platform runs on dimensions, attributes, measures, and properties — and their relationships are not simple. A dimension like Product contains attributes at multiple hierarchy levels. Time can be structured as Year → Quarter → Week or Year → Season → Week — same dimension, different structural paths. Measures sit at the intersections. Properties describe attributes themselves.</p>
+  <p>A filter is not a UI element that sits on top of data. It is an interface into the data model. Design it without understanding the model, and you get the interactions wrong — not visibly, but at the edges. In the cases that matter most.</p>
+  <p>My first job on this project was not to open Figma. It was to develop a working understanding of the platform — dimensions, hierarchy depth, attribute aliasing, interdependency rules — well enough to anticipate where filters break, and then design so that they don't.</p>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     02 — The Complexity
+════════════════════════════════════════════════════════════════ -->
+<section id="complexity" data-label="02 — The Complexity">
+  <h2>Three axes that make enterprise filtering hard</h2>
+  <div data-component="grid" data-cols="3">
+    <article>
+      <h4>I — Vertical hierarchy</h4>
+      <ul>
+        <li>Attributes span L1 through L6. Selection at any level cascades.</li>
+        <li>Deselect a parent — all children deselect.</li>
+        <li>The bottom grid always shows leaf-level reality regardless of where in the hierarchy the user selected.</li>
+        <li>Count messages, partial-selection indicators, and select-all each need separate behaviour logic — and they interact differently depending on whether the hierarchy is simple, alternate, or interdependent.</li>
+      </ul>
+    </article>
+    <article>
+      <h4>II — Alternate hierarchies</h4>
+      <ul>
+        <li>Same dimension, multiple structural paths: Time as Year → Quarter → Week, or Year → Season → Week.</li>
+        <li>These can be cascading (AND) — selecting in one hierarchy filters the other — or independent (OR), operating in parallel.</li>
+        <li>Tab strip vs radio buttons isn't aesthetic. It's a statement about how the data behaves.</li>
+        <li>The visual affordance communicates the relationship logic to the planner.</li>
+      </ul>
+    </article>
+    <article>
+      <h4>III — Cross-dimension interdependency</h4>
+      <ul>
+        <li>Selecting a Product category can change which Locations are valid. The system re-queries silently.</li>
+        <li>Options update. The user needs to understand why their choices changed — through design, not tooltips.</li>
+        <li>Unsaved changes get an orange dot indicator. Dimension markers shift colour to communicate system state.</li>
+        <li>All of this is communication, not decoration.</li>
+      </ul>
+    </article>
+  </div>
+  <blockquote>The reason this work hadn't been done before wasn't a lack of effort. It was a lack of this specific kind of understanding. Most users pick a few members and move on. The 30% who don't — power planners running complex global operations — are the platform's most critical users.</blockquote>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     03 — The Migration
+════════════════════════════════════════════════════════════════ -->
+<section id="migration" data-label="03 — The Migration">
+  <h2>Users carried a mental model from their legacy system. It shaped every decision.</h2>
+  <p>The client's planners had spent years working with a legacy tree-filter that displayed hierarchies across multiple columns, expandable horizontally. They weren't asking for a feature. They were telling us what their workflow needed to feel like — and where o9's existing filter was failing them.</p>
+  <p>Every subsequent capability request — checkbox support, filter criteria in AOP, dynamic attribute aliases, minimising data load frequency — traced back to a gap between their mental model and what the platform offered. The original scope filter opened as a popup, broke context, and showed no hierarchy relationships. That single pain point compounded into a multi-phase redesign of how filtering works on o9.</p>
+  <div data-component="table">
+    <thead>
+      <tr>
+        <th>Aspect</th>
+        <th>Legacy system</th>
+        <th>What I designed</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Hierarchy nav</td>
+        <td>Multi-column horizontal expansion</td>
+        <td data-accent>Right pane (vertical) + expanded mode (horizontal) — both synced</td>
+      </tr>
+      <tr>
+        <td>Visibility</td>
+        <td>Always visible tree on left side</td>
+        <td data-accent>Always-on right pane — persistent across workflow</td>
+      </tr>
+      <tr>
+        <td>Selection</td>
+        <td>Checkbox in tree, multi-select</td>
+        <td data-accent>Distinct label-click vs checkbox-click model with cascade rules</td>
+      </tr>
+      <tr>
+        <td>Hierarchy types</td>
+        <td>STD / BIZ — one active at a time</td>
+        <td data-accent>Cascading (AND) or independent (OR) via visual affordance</td>
+      </tr>
+      <tr>
+        <td>Dynamic attributes</td>
+        <td>Different attributes per product group</td>
+        <td data-accent>Anchor attribute matrix — labels, columns, and filter options adapt per category</td>
+      </tr>
+      <tr>
+        <td>Deep hierarchy</td>
+        <td>Resizable column sliders</td>
+        <td data-accent>Double-width toggle with carousel navigation and animated slide</td>
+      </tr>
+    </tbody>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     04 — The Lineage
+════════════════════════════════════════════════════════════════ -->
+<section id="lineage" data-label="04 — The Lineage">
+  <h2>A filter system that accumulated across five phases</h2>
+  <p>The AOP was not designed once. It responded to deepening requirements — each phase folding into the last without breaking what already existed.</p>
+  <div data-component="timeline">
+    <article data-date="Phase 1">
+      <h4>Classic Scope Filter</h4>
+      <p>Popup overlay. Context broken on every use. Shows only members at the selected level — no hierarchy context visible. Starting point and the pain to move away from.</p>
+    </article>
+    <article data-date="Phase 2">
+      <h4>Expanded Mode</h4>
+      <p>Full-page filter with dimension tabs, attribute columns side by side, bottom grid showing leaf selections with full parent chain. In-context, not a popup.</p>
+    </article>
+    <article data-date="Phase 3">
+      <h4>Right Pane (AOP)</h4>
+      <p>Always visible ~270px pane. Same data reinterpreted vertically. Bidirectional sync with expanded mode. Cancel/Apply footer for manual batching.</p>
+    </article>
+    <article data-date="Phase 4">
+      <h4>Properties + Refinement</h4>
+      <p>Boolean, picklist, datetime, number/integer range filters. Other Filters section unified. 6 layout approaches explored — accordion rejected (hides structure). Interaction rules formalised.</p>
+    </article>
+    <article data-date="Phase 5">
+      <h4>Double-Width</h4>
+      <p>Two-column pane for deep hierarchies. Parent in left column, children slide into right column with animation. Dot carousel + keyboard navigation. Behaviour confirmed directly with client team.</p>
+    </article>
+  </div>
+  <blockquote>Vertical Filter Pane — a different spatial approach where all dimensions sit in a single vertical stack. I designed 7 user flows for it, and it shipped as beta. It has since been withdrawn; the learnings are feeding forward into something new.</blockquote>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     05 — Two Surfaces
+════════════════════════════════════════════════════════════════ -->
+<section id="surfaces" data-label="05 — Two Surfaces">
+  <h2>Same data, same state — completely different spatial arrangements</h2>
+  <p>The right pane and expanded mode share selection state, filter config, and data. One is narrow and vertical; the other is wide and horizontal. A planner switching between them needs to feel their understanding of "where my selection is" transfers without confusion.</p>
+  <p>What the expanded mode shows as side-by-side columns — Year | Quarter | Month | Week — the right pane shows as nested levels stacking downward within a single tab. Changes made in one sync bidirectionally to the other. This is not a layout problem. It is a mental model problem. The user needs to feel they are looking at the same filter from two different angles — not operating two different filters.</p>
+  <div data-component="grid" data-cols="2">
+    <article>
+      <h4 data-badge="Always on">Right Pane</h4>
+      <ul>
+        <li>~270px wide, persistent alongside content</li>
+        <li>Dimension tabs across top</li>
+        <li>Hierarchy stacked vertically within each tab</li>
+        <li>Other Filters unified at bottom</li>
+        <li>Double-width toggle for deep hierarchies</li>
+      </ul>
+    </article>
+    <article>
+      <h4 data-badge="On demand">Expanded Mode</h4>
+      <ul>
+        <li>Full-page, triggered by filter chip</li>
+        <li>Attribute levels side by side as columns</li>
+        <li>Bottom grid: leaf selections + full parent chain</li>
+        <li>Properties tab for cross-dimension filters</li>
+        <li>Filter Criteria expression builder</li>
+      </ul>
+    </article>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     06 — The Interaction
+════════════════════════════════════════════════════════════════ -->
+<section id="interaction" data-label="06 — The Interaction">
+  <h2>One row, two controls, completely different intents</h2>
+  <p>Every hierarchy row has a label and a checkbox. They sit adjacent. They do completely different things. Getting this wrong in supply chain planning is a data integrity problem — planners accidentally include data they didn't intend, or miss selections that affect downstream calculations.</p>
+  <p>This distinction — label click navigates, checkbox click selects — runs through the entire system. It applies identically in the right pane and the expanded mode, in simple hierarchies and alternate hierarchies, with or without interdependency active. It is the single interaction rule that, if broken in any configuration, compromises the reliability of the filter.</p>
+  <div data-component="decisions">
+    <article data-num="Rule">
+      <h4>Label click = navigate only</h4>
+      <p>Expand or collapse. Reveals or hides child members. Navigation only. Does not affect selection. Does not change what applies on Apply.</p>
+    </article>
+    <article data-num="Rule">
+      <h4>Checkbox click = select + expand together</h4>
+      <p>Member is selected; children become visible simultaneously. Does not alter sibling members or other dimensions.</p>
+    </article>
+    <article data-num="Rule">
+      <h4>Checkbox deselect = deselect + collapse</h4>
+      <p>Cascades downward — all children also deselect. Bottom grid updates immediately. Does not affect sibling members.</p>
+    </article>
+  </div>
+  <div data-component="table">
+    <thead>
+      <tr>
+        <th>Action</th>
+        <th>What it does</th>
+        <th>What it does not do</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Label click</td>
+        <td>Expand or collapse. Reveals or hides child members. Navigation only.</td>
+        <td>Does not affect selection. Does not change what applies on Apply.</td>
+      </tr>
+      <tr>
+        <td>Checkbox click</td>
+        <td>Select + expand together. Member is selected; children become visible simultaneously.</td>
+        <td>Does not alter sibling members or other dimensions.</td>
+      </tr>
+      <tr>
+        <td>Checkbox deselect</td>
+        <td>Deselect + collapse together. Cascades downward — all children also deselect. Bottom grid updates immediately.</td>
+        <td>Does not affect sibling members.</td>
+      </tr>
+    </tbody>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     07 — The Invisible Work
+════════════════════════════════════════════════════════════════ -->
+<section id="invisible-work" data-label="07 — The Invisible Work">
+  <h2>Every new capability had to work in every existing configuration</h2>
+  <p>Not in any single interaction. In the combinatorial surface of interactions that have to coexist without contradiction. Every new phase had to be tested across the full matrix of existing configurations — both surfaces, all hierarchy types, all filter states.</p>
+  <div data-component="table">
+    <thead>
+      <tr>
+        <th>Configuration</th>
+        <th>Right Pane</th>
+        <th>Expanded Mode</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Simple hierarchy</td>
+        <td>✓ Single column</td>
+        <td>✓ Hierarchical + grid toggle</td>
+      </tr>
+      <tr>
+        <td>Alternate hierarchy (cascade)</td>
+        <td>✓ Sub-tab switcher</td>
+        <td>✓ Cascades on switch</td>
+      </tr>
+      <tr>
+        <td>Alternate hierarchy (independent)</td>
+        <td>✓ Radio switcher</td>
+        <td>✓ OR condition preserved</td>
+      </tr>
+      <tr>
+        <td>Cross-dim interdependency</td>
+        <td>✓ Orange indicator</td>
+        <td>✓ Syncs bidirectionally</td>
+      </tr>
+      <tr>
+        <td>Double-width layout</td>
+        <td>✓ 2-col + carousel</td>
+        <td>N/A</td>
+      </tr>
+      <tr>
+        <td>Filter Criteria active</td>
+        <td>✓ Read-only indicator</td>
+        <td>✓ Expression builder</td>
+      </tr>
+      <tr>
+        <td>Search active</td>
+        <td>✓ Within dimension tab</td>
+        <td>✓ Clears on grid switch</td>
+      </tr>
+      <tr>
+        <td>Member Specific Attributes</td>
+        <td>✓ Dynamic in Other Filters</td>
+        <td>✓ Via FC pane</td>
+      </tr>
+    </tbody>
+  </div>
+  <p>The last row — Member Specific Attributes — is worth lingering on. The client has 15+ item attributes per dimension, but which attributes are valid depends on the product category. Select "Mobile" and the filter shows Memory, Service, Camera. Select "PC" and it shows CPU Spec, OS, Colour. Select both and only the intersection appears. The filter UI had to reflect that reality in real time without the planner ever needing to understand the mechanism underneath.</p>
+  <blockquote>When this is done right, the user never sees the matrix. The invisibility of correct systems design is both the goal and the reason it is easy to underestimate.</blockquote>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     08 — Outcome  [DARK SECTION]
+════════════════════════════════════════════════════════════════ -->
+<section id="outcome" data-label="08 — Outcome" data-type="dark">
+  <h2>Three surfaces. Five phases. One data model that had to stay consistent across all of them.</h2>
+  <p>The AOP filter is now a core part of o9's platform — not a client-specific implementation, but something every planner who uses o9 encounters. Most of them will never know what went into what they see. They will select their members, hit apply, and move on. That is exactly the right outcome.</p>
+  <blockquote>The hardest design work is the kind that removes itself from the picture entirely.</blockquote>
+  <div data-component="grid" data-cols="2">
+    <article>
+      <h4 data-badge="Surfaces Designed">Delivery</h4>
+      <ul>
+        <li>AOP Right Pane (~270px, always-on)</li>
+        <li>Expanded Mode (full-page, horizontal columns)</li>
+        <li>Properties Tab (cross-dimension filters)</li>
+        <li>Double-Width Pane (deep hierarchy + carousel)</li>
+        <li>Vertical Filter Pane (beta — 7 user flows)</li>
+      </ul>
+    </article>
+    <article>
+      <h4 data-badge="Approach">Method</h4>
+      <ul>
+        <li>Domain fluency first — data model before Figma</li>
+        <li>Interaction model second — label vs checkbox as system rule</li>
+        <li>Real estate optimisation throughout</li>
+        <li>Five capability additions, each folded into the previous without regression</li>
+        <li>Core platform feature — ships across all o9 tenants</li>
+      </ul>
+    </article>
+  </div>
+  <ul data-tags>
+    <li>Systems Thinking</li>
+    <li>Data Model Fluency</li>
+    <li>Multi-surface Design</li>
+    <li>Interaction Precision</li>
+    <li>Platform Scalability</li>
+  </ul>
+</section>
+
+</body>
+</html>
